@@ -1,0 +1,23 @@
+{
+	"name": "HuNanZai/PHP_HelpPay",
+	"description": "一个php的第三方支付的接入库",
+	"author": {
+			"name": "wuwanli",
+			"email": "123165587@qq.com",
+			"role": "leader"
+	},
+	"license": "MIT",
+
+	"require": {
+		"php": ">= 5.3",
+		"monolog/monolog": "~1.16.0",
+		"rmccue/requests": "~1.6.1"
+	},
+
+	"autoload": {
+		"psr-4": {
+			"HuNanZai\\HelpPay\\": "src/",
+			"HuNanZai\\HelpPay\\Tests\\": "tests/"
+		}
+	}
+}
