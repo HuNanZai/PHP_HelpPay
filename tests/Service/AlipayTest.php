@@ -5,7 +5,7 @@ namespace HuNanZai\HelpPay\Tests\Service;
 class AlipayTest extends \PHPUnit_Framework_TestCase
 {
     public function testTravis(){
-        $a = 'travis';
+        $a = 'trvis';
         $this->assertEquals('travis', $a);
     }
 }
