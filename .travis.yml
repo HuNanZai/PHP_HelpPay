@@ -1,0 +1,10 @@
+language: php
+
+php:
+ - 5.3.*
+
+script:
+ - phpunit --bootstrap src/bootstrap.php tests
+
+notifications:
+ email: wuwanli@corp-ci.com

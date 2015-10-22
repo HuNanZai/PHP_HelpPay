@@ -1,6 +1,7 @@
 <?php
 namespace HuNanZai\HelpPay\Service\Alipay;
 
+use HuNanZai\HelpPay\Common\Func;
 use HuNanZai\HelpPay\Common\IThirdPartyPay;
 
 class Service implements IThirdPartyPay
@@ -13,10 +14,9 @@ class Service implements IThirdPartyPay
      * @param null $extra //订单的其他交易信息
      *
      * @return mixed
-     */
+    */
     public function pay($trade_no, $amount, $extra = null)
     {
-        // TODO: Implement pay() method.
     }
 
     /**
