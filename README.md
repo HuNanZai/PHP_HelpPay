@@ -1,4 +1,4 @@
-#PHP_HelpPay
+#PHP_HelpPay [![Build Status](https://secure.travis-ci.org/HuNanZai/PHP_HelpPay.png?branch=master)](http://travis-ci.org/HuNanZai/PHP_HelpPay)
 
 ##Introduce
  - 目前主要应用于移动支付场景（支付宝的手机网站支付+银联支付手机网关支付+微信支付）
