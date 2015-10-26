@@ -23,9 +23,9 @@ class Service implements IThirdPartyPay
     public function pay($trade_no, $amount, $extra = null)
     {
         $parameter = array(
-            'service'   => 'alipay.wap.create.direct.pay.by.user',
-            'partner'   => trim(Config::PARTNER),
-            'seller_id' => trim(Config::SELLER_ID),
+            'service'       => 'alipay.wap.create.direct.pay.by.user',
+            'partner'       => trim(Config::PARTNER),
+            'seller_id'     => trim(Config::SELLER_ID),
             'payment_type'  => '1',
             'notify_url'    => Config::NOTIFY_URL,
             'return_url'    => Config::RETURN_URL,
@@ -112,9 +112,9 @@ class Service implements IThirdPartyPay
         }
         echo "success";
         return array(
-            'batch_no'  => $_POST['batch_no'],
+            'batch_no'      => $_POST['batch_no'],
             'success_num'   => $_POST['success_num'],
-            'result_details'    => $_POST['result_details'],
+            'result_details'=> $_POST['result_details'],
         );
     }
 
@@ -129,11 +129,11 @@ class Service implements IThirdPartyPay
     public function search($trade_no, $thirdparty_trade_no)
     {
         $parameter = array(
-            'service'   => 'single_trade_query',
-            'partner'   => trim(Config::PARTNER),
-            'trade_no'  => $thirdparty_trade_no,
+            'service'       => 'single_trade_query',
+            'partner'       => trim(Config::PARTNER),
+            'trade_no'      => $thirdparty_trade_no,
             'out_trade_no'  => $trade_no,
-            '_input_charset'    => trim(strtolower(Config::INPUT_CHARSET)),
+            '_input_charset'=> trim(strtolower(Config::INPUT_CHARSET)),
         );
         $submit = new Submit(Config::getConfigArray());
         $result = $submit->buildRequestHttp($parameter);
@@ -157,9 +157,9 @@ class Service implements IThirdPartyPay
     public function close($trade_no, $thirdparty_trade_no)
     {
         $parameter = array(
-            'service'   => 'close_trade',
-            'partner'   => trim(Config::PARTNER),
-            'trade_no'  => $thirdparty_trade_no,
+            'service'       => 'close_trade',
+            'partner'       => trim(Config::PARTNER),
+            'trade_no'      => $thirdparty_trade_no,
             'out_trade_no'  => $trade_no,
             '_input_charset'=> trim(strtolower(Config::INPUT_CHARSET)),
         );
@@ -182,9 +182,9 @@ class Service implements IThirdPartyPay
     public function refund($batch_no, $trade_no, $amount, $extra = null)
     {
         $parameter = array(
-            'service'   => 'refund_fastpay_by_platform_pwd',
-            'partner'   => trim(Config::PARTNER),
-            'notify_url'=> Config::NOTIFY_URL,
+            'service'       => 'refund_fastpay_by_platform_pwd',
+            'partner'       => trim(Config::PARTNER),
+            'notify_url'    => Config::NOTIFY_URL,
             'seller_email'  => Config::SELLER_EMAIL,
             'refund_date'   => date('Y-m-d H:i:s'),
             'batch_no'      => $batch_no,
