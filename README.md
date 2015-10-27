@@ -24,3 +24,17 @@
  - 因为这些流程都差不多,其实我挺想把这些配置区分出来,这样可以在一个项目中支持不同的支付帐号收款和管理
 
 ##Usage
+```
+//发起支付
+$res = HuNanZai\HelpPay\Api::pay(HuNanZai\HelpPay\Api::SERVICE_TYPE_ALIPAY, 'xxxxx', 100);
+//查询交易
+$res = HuNanZai\HelpPay\Api::search(HuNanZai\HelpPay\Api::SERVICE_TYPE_ALIPAY, 'xxxxx', 'xxxx');
+//关闭交易
+$res = HuNanZai\HelpPay\Api::close(HuNanZai\HelpPay\Api::SERVICE_TYPE_ALIPAY, 'xxxxx', 'xxxxx');
+//交易退款
+$res = HuNanZai\HelpPay\Api::refund(HuNanZai\HelpPay\Api::SERVICE_TYPE_ALIPAY, 'xxxxx', 'xxxxx', 1);
+```
+
+##Remark
+1. 每家支付的处理方式都不一样，所以对于结果也需要不同的处理（暂时没有考虑封装返回接口以及请求数据）
+2. log暂时也没有集成，有需要的可以自行添加
