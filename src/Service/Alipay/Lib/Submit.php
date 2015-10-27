@@ -1,9 +1,6 @@
 <?php
 namespace HuNanZai\HelpPay\Service\Alipay\Lib;
 
-include_once __DIR__ . 'core_function.php';
-include_once __DIR__ . 'rsa_function.php';
-
 class Submit
 {
     var $alipay_config;
@@ -32,12 +29,12 @@ class Submit
     function buildRequestMysign($para_sort)
     {
         //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
-        $prestr = createLinkstring($para_sort);
+        $prestr = Core::createLinkstring($para_sort);
 
         $mysign = "";
         switch (strtoupper(trim($this->alipay_config['sign_type']))) {
             case "RSA" :
-                $mysign = rsaSign($prestr, $this->alipay_config['private_key_path']);
+                $mysign = Rsa::rsaSign($prestr, $this->alipay_config['private_key_path']);
                 break;
             default :
                 $mysign = "";
@@ -56,10 +53,10 @@ class Submit
     function buildRequestPara($para_temp)
     {
         //除去待签名参数数组中的空值和签名参数
-        $para_filter = paraFilter($para_temp);
+        $para_filter = Core::paraFilter($para_temp);
 
         //对待签名参数数组排序
-        $para_sort = argSort($para_filter);
+        $para_sort = Core::argSort($para_filter);
 
         //生成签名结果
         $mysign = $this->buildRequestMysign($para_sort);
@@ -84,7 +81,7 @@ class Submit
         $para = $this->buildRequestPara($para_temp);
 
         //把参数组中所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串，并对字符串做urlencode编码
-        $request_data = createLinkstringUrlencode($para);
+        $request_data = Core::createLinkstringUrlencode($para);
 
         return $request_data;
     }
@@ -131,7 +128,7 @@ class Submit
         $request_data = $this->buildRequestPara($para_temp);
 
         //远程获取数据
-        $sResult = getHttpResponsePOST($this->alipay_gateway_new, $this->alipay_config['cacert'], $request_data,
+        $sResult = Core::getHttpResponsePOST($this->alipay_gateway_new, $this->alipay_config['cacert'], $request_data,
             trim(strtolower($this->alipay_config['input_charset'])));
 
         return $sResult;
@@ -154,7 +151,7 @@ class Submit
         $para[$file_para_name] = "@" . $file_name;
 
         //远程获取数据
-        $sResult = getHttpResponsePOST($this->alipay_gateway_new, $this->alipay_config['cacert'], $para,
+        $sResult = Core::getHttpResponsePOST($this->alipay_gateway_new, $this->alipay_config['cacert'], $para,
             trim(strtolower($this->alipay_config['input_charset'])));
 
         return $sResult;
@@ -171,7 +168,7 @@ class Submit
         $url         = $this->alipay_gateway_new . "service=query_timestamp&partner=" . trim(strtolower($this->alipay_config['partner'])) . "&_input_charset=" . trim(strtolower($this->alipay_config['input_charset']));
         $encrypt_key = "";
 
-        $doc = new DOMDocument();
+        $doc = new \DOMDocument();
         $doc->load($url);
         $itemEncrypt_key = $doc->getElementsByTagName("encrypt_key");
         $encrypt_key     = $itemEncrypt_key->item(0)->nodeValue;
